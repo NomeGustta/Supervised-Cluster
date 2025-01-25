@@ -24,21 +24,15 @@
 
 3. **Avalia o Modelo**  
    - Separa dados em treino e teste.  
-   - Exibe métricas como acurácia, relatório de classificação e matriz de confusão.  
-   - **Onde colocar a imagem da Matriz de Confusão**:  
-     - No **Notion**, você pode inserir a imagem logo após a explicação sobre a avaliação do modelo.  
-     - Exemplo:
-
+   - Exibe métricas como acurácia, relatório de classificação e matriz de confusão.
+     
        **Matriz de Confusão - Regressão Logística**  
        ![Captura de tela 2025-01-25 174014](https://github.com/user-attachments/assets/8332c228-4de9-438c-bf73-5be720ba6fdf)
 
 4. **Visualiza os Dados em 3D (PCA)**  
    - Reduz os dados para **3 componentes principais** com o PCA.  
-   - Gera **gráficos 3D** para comparar classes reais e preditas.  
-   - **Onde colocar a imagem da Visualização 3D**:  
-     - No **Notion**, após a explicação do PCA, insira a figura que ilustra as classes preditas.  
-     - Exemplo:
-
+   - Gera **gráficos 3D** para comparar classes reais e preditas.
+     
        **Visualização 3D - Classes Preditas**  
        ![Captura de tela 2025-01-25 174238](https://github.com/user-attachments/assets/a0178f90-0a35-4a03-994e-735bf93f9b22)
 ---
@@ -59,28 +53,20 @@ pip install pandas seaborn matplotlib scikit-learn
 ---
 
 ## 🏃 **Como Executar o Projeto**
-1. **Clone o repositório** ou baixe-o em formato ZIP:
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   ```
-2. **Entre na pasta** do projeto:
-   ```bash
-   cd nome-do-repositorio
-   ```
-3. **Instale as dependências**:
+1. **Instale as dependências**:
    ```bash
    pip install pandas seaborn matplotlib scikit-learn
    ```
-4. **Execute o arquivo principal**:
+2. **Execute o arquivo principal**:
    ```bash
    python main.py
    ```
    > Substitua `main.py` pelo nome do seu arquivo (ex.: `iris_logistic.py`).
 
-5. **Confira o console**:  
+3. **Confira o console**:  
    - Você verá logs sobre as etapas: carregamento de dados, escalonamento, `GridSearchCV`, métricas de avaliação etc.
 
-6. **Visualize os Gráficos**:  
+4. **Visualize os Gráficos**:  
    - Uma matriz de confusão em formato de *heatmap*.  
    - Dois gráficos 3D (classes reais e classes preditas).
 
