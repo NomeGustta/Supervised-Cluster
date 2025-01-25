@@ -18,8 +18,9 @@ logging.basicConfig(level=logging.INFO)
 def load_and_preprocess_data():
     """
     Função para carregar e pré-processar os dados do conjunto Iris.
-    - Carrega os dados
-    - Escalona as features
+    - Carrega os dados do conjunto Iris.
+    - Escalona as features para normalizar os dados.
+    O objetivo dessa função é preparar os dados para serem utilizados pelo modelo de aprendizado supervisionado.
     """
     iris = load_iris()
     X = iris.data
@@ -37,9 +38,12 @@ def load_and_preprocess_data():
 def train_model(X_train, y_train):
     """
     Função para treinar o modelo de Regressão Logística com ajuste de hiperparâmetros.
+    - Define um pipeline com escalonamento de dados e treinamento do modelo.
+    - Utiliza GridSearchCV para ajustar os hiperparâmetros e encontrar o melhor modelo.
+    O objetivo dessa função é treinar o modelo de forma eficiente e otimizada.
     """
     # Definindo um Pipeline com o escalonamento e o modelo
-    pipeline = Pipeline([
+    pipeline = Pipeline([ 
         ('scaler', StandardScaler()), 
         ('model', LogisticRegression(max_iter=200))
     ])
@@ -60,6 +64,9 @@ def train_model(X_train, y_train):
 def evaluate_model(model, X_test, y_test, iris):
     """
     Função para avaliar o modelo treinado usando as métricas de desempenho.
+    - Calcula a acurácia, relatório de classificação e matriz de confusão.
+    - Exibe a matriz de confusão visualmente com um gráfico.
+    O objetivo dessa função é fornecer uma visão completa da performance do modelo.
     """
     y_pred = model.predict(X_test)
     
@@ -85,6 +92,9 @@ def evaluate_model(model, X_test, y_test, iris):
 def visualize_pca(X_test, y_test, y_pred, iris):
     """
     Função para visualizar as previsões e classes reais em 3D após PCA.
+    - Aplica PCA (Análise de Componentes Principais) para reduzir a dimensionalidade.
+    - Visualiza em 3D as classes reais e preditas para compará-las visualmente.
+    O objetivo dessa função é facilitar a interpretação dos resultados do modelo.
     """
     pca_3d = PCA(n_components=3)
     X_test_pca_3d = pca_3d.fit_transform(X_test)
@@ -142,6 +152,11 @@ def visualize_pca(X_test, y_test, y_pred, iris):
 def main():
     """
     Função principal para orquestrar o fluxo do código.
+    - Carrega e pré-processa os dados.
+    - Divide os dados em treino e teste.
+    - Treina o modelo de Regressão Logística.
+    - Avalia o desempenho do modelo e visualiza os resultados.
+    O objetivo dessa função é executar todas as etapas do projeto, desde a carga dos dados até a avaliação do modelo.
     """
     # Carregar e pré-processar os dados
     X, y, iris = load_and_preprocess_data()
@@ -159,6 +174,21 @@ def main():
 
     # Visualizar o PCA
     visualize_pca(X_test, y_test, model.predict(X_test), iris)
+
+    # Explicação dos resultados
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    logging.info(f"Acurácia do modelo: {accuracy:.2f}")
+
+    # Analisando a matriz de confusão
+    cm = confusion_matrix(y_test, y_pred)
+    class_errors = cm.diagonal().sum() / cm.sum()  # Taxa de erro por classe
+    logging.info(f"Taxa de erro por classe: {1 - class_errors:.2f}")
+
+    # Analisando as classes com mais erros
+    most_confused = cm.sum(axis=0) - cm.diagonal()
+    for i, label in enumerate(iris.target_names):
+        logging.info(f"Classe {label} teve {most_confused[i]} confusões com outras classes.")
 
 if __name__ == "__main__":
     main()
