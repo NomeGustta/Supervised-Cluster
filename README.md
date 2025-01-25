@@ -107,3 +107,6 @@ pip install pandas seaborn matplotlib scikit-learn
 - **Mudar Hiperparâmetros**: Ajuste `C` ou `solver` em `GridSearchCV` para testar novas configurações.  
 - **Trocar o Classificador**: Tente `SVC`, `RandomForestClassifier` ou outros algoritmos.  
 - **Alterar Componentes PCA**: Defina `n_components=2` para visualizações bidimensionais.
+
+---
+Espero que este README tenha tornado o código mais compreensível e útil! 😊
